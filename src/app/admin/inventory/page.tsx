@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -15,9 +16,9 @@ import { PlusCircle, Trash2, Edit3, PackageSearch, Archive, ListFilter } from "l
 import Image from "next/image";
 
 const initialMockProducts: Product[] = [
-  { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 2.50, stock: 50, imageUrl: "https://placehold.co/64x64.png", category: "Notebooks", dataAiHint: "notebook spiral" },
-  { id: "2", name: "Ballpoint Pens (Pack of 5)", description: "Blue ink, medium point", price: 1.75, stock: 120, imageUrl: "https://placehold.co/64x64.png", category: "Pens", dataAiHint: "pens pack" },
-  { id: "3", name: "Highlighters (Set of 4)", description: "Assorted fluorescent colors", price: 3.00, stock: 0, imageUrl: "https://placehold.co/64x64.png", category: "Stationery", dataAiHint: "highlighters set" },
+  { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, imageUrl: "https://placehold.co/60x60.png", category: "Notebooks", dataAiHint: "notebook spiral" },
+  { id: "2", name: "Ballpoint Pens (Pack of 5)", description: "Blue ink, medium point", price: 130.00, stock: 120, imageUrl: "https://placehold.co/65x65.png", category: "Pens", dataAiHint: "pens pack" },
+  { id: "3", name: "Highlighters (Set of 4)", description: "Assorted fluorescent colors", price: 225.00, stock: 0, imageUrl: "https://placehold.co/70x70.png", category: "Stationery", dataAiHint: "highlighters set" },
 ];
 
 export default function InventoryPage() {
@@ -140,7 +141,7 @@ export default function InventoryPage() {
                   <TableRow key={product.id}>
                     <TableCell className="hidden sm:table-cell">
                        <Image
-                          src={product.imageUrl || "https://placehold.co/64x64.png"}
+                          src={product.imageUrl || "https://placehold.co/50x50.png"}
                           alt={product.name}
                           width={48}
                           height={48}
@@ -155,7 +156,7 @@ export default function InventoryPage() {
                     <TableCell className="hidden md:table-cell">
                       {product.category ? <Badge variant="outline">{product.category}</Badge> : "-"}
                     </TableCell>
-                    <TableCell className="text-right">${product.price.toFixed(2)}</TableCell>
+                    <TableCell className="text-right">₹{product.price.toFixed(2)}</TableCell>
                     <TableCell className="text-center">
                       <Badge variant={getStockBadgeVariant(product.stock)}>{product.stock > 0 ? product.stock : "Out of Stock"}</Badge>
                     </TableCell>
@@ -209,7 +210,7 @@ export default function InventoryPage() {
                 <Input id="category" value={productCategory} onChange={(e) => setProductCategory(e.target.value)} className="col-span-3" placeholder="e.g., Notebooks, Pens" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="price" className="text-right">Price</Label>
+                <Label htmlFor="price" className="text-right">Price (₹)</Label>
                 <Input id="price" type="number" step="0.01" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} className="col-span-3" required />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -218,7 +219,7 @@ export default function InventoryPage() {
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="imageUrl" className="text-right">Image URL</Label>
-                <Input id="imageUrl" value={productImageUrl} onChange={(e) => setProductImageUrl(e.target.value)} className="col-span-3" placeholder="https://placehold.co/300x200.png" />
+                <Input id="imageUrl" value={productImageUrl} onChange={(e) => setProductImageUrl(e.target.value)} className="col-span-3" placeholder="https://placehold.co/280x180.png" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="dataAiHint" className="text-right">AI Hint</Label>
@@ -237,3 +238,5 @@ export default function InventoryPage() {
     </div>
   );
 }
+
+    

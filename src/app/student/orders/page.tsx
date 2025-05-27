@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -16,10 +17,10 @@ const mockOrders: Order[] = [
     orderNumber: "CAMPUS-001",
     userId: "s1",
     items: [
-      { id: "ci1", type: "product", product: { id: "1", name: "Spiral Notebook", price: 2.50, stock:10, description:"test", category: "Notebooks" }, quantity: 2 },
-      { id: "ci2", type: "print", printJob: { id:"p1", userId:"s1", fileName: "Essay.pdf", copies: 1, paperSize: "A4", color: "B&W", twoSided: false, status: "Completed", orderDate: new Date().toISOString(), estimatedPrice: 0.50 }, quantity: 1 },
+      { id: "ci1", type: "product", product: { id: "1", name: "Spiral Notebook", price: 190.00, stock:10, description:"test", category: "Notebooks", dataAiHint:"notebook" }, quantity: 2 },
+      { id: "ci2", type: "print", printJob: { id:"p1", userId:"s1", fileName: "Essay.pdf", copies: 1, paperSize: "A4", color: "Black & White", twoSided: false, status: "Completed", orderDate: new Date().toISOString(), estimatedPrice: 40.00 }, quantity: 1 },
     ],
-    totalAmount: 5.50,
+    totalAmount: 420.00,
     status: "Completed",
     orderDate: new Date(Date.now() - 86400000 * 2).toISOString(), // 2 days ago
   },
@@ -28,9 +29,9 @@ const mockOrders: Order[] = [
     orderNumber: "CAMPUS-002",
     userId: "s1",
     items: [
-      { id: "ci3", type: "product", product: { id: "2", name: "Pen Pack", price: 1.75, stock:10, description:"test", category: "Pens"}, quantity: 1 },
+      { id: "ci3", type: "product", product: { id: "2", name: "Pen Pack", price: 130.00, stock:10, description:"test", category: "Pens", dataAiHint:"pens pack" }, quantity: 1 },
     ],
-    totalAmount: 1.75,
+    totalAmount: 130.00,
     status: "Processing",
     orderDate: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
   },
@@ -39,9 +40,9 @@ const mockOrders: Order[] = [
     orderNumber: "CAMPUS-003",
     userId: "s1",
     items: [
-      { id: "ci4", type: "print", printJob: { id:"p2", userId:"s1", fileName: "Presentation.pdf", copies: 5, paperSize: "A4", color: "Color", twoSided: true, status: "Pending", orderDate: new Date().toISOString(), estimatedPrice: 3.00 }, quantity: 1 },
+      { id: "ci4", type: "print", printJob: { id:"p2", userId:"s1", fileName: "Presentation.pdf", copies: 5, paperSize: "A4", color: "Color", twoSided: true, status: "Pending", orderDate: new Date().toISOString(), estimatedPrice: 225.00 }, quantity: 1 },
     ],
-    totalAmount: 3.00,
+    totalAmount: 225.00,
     status: "Pending",
     orderDate: new Date().toISOString(),
   },
@@ -149,7 +150,7 @@ export default function OrdersPage() {
                     <TableCell className="text-center">
                       <Badge variant={getStatusBadgeVariant(order.status)}>{order.status}</Badge>
                     </TableCell>
-                    <TableCell className="text-right">${order.totalAmount.toFixed(2)}</TableCell>
+                    <TableCell className="text-right">₹{order.totalAmount.toFixed(2)}</TableCell>
                     <TableCell className="text-center">
                       <Button variant="outline" size="sm" asChild>
                         {/* This would ideally link to an order detail page */}
@@ -179,3 +180,5 @@ export default function OrdersPage() {
     </div>
   );
 }
+
+    

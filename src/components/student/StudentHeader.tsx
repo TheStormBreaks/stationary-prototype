@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -76,7 +77,7 @@ export function StudentHeader({ shopStatus, cartItemCount }: StudentHeaderProps)
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src="https://placehold.co/100x100.png" alt="Student Avatar" data-ai-hint="user avatar" />
+                  <AvatarImage src="https://placehold.co/95x95.png" alt="Student Avatar" data-ai-hint="user avatar" />
                   <AvatarFallback>
                     <GraduationCap />
                   </AvatarFallback>
@@ -128,3 +129,5 @@ export function StudentHeader({ shopStatus, cartItemCount }: StudentHeaderProps)
     </header>
   );
 }
+
+    

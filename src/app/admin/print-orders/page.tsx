@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -18,10 +19,10 @@ import {
 
 
 const initialMockPrintOrders: PrintOrder[] = [
-  { id: "po1", userId: "student123", fileName: "Thesis_Chapter1.pdf", copies: 3, paperSize: "A4", color: "Black & White", twoSided: true, notes: "Staple top-left", status: "Pending", orderDate: new Date(Date.now() - 3600000 * 2).toISOString(), estimatedPrice: 1.50 },
-  { id: "po2", userId: "student456", fileName: "Lab_Report_Final.docx", copies: 1, paperSize: "Letter", color: "Color", twoSided: false, status: "Pending", orderDate: new Date(Date.now() - 3600000).toISOString(), estimatedPrice: 0.75 },
-  { id: "po3", userId: "student789", fileName: "Presentation_Slides.pptx", copies: 10, paperSize: "A4", color: "Color", twoSided: true, notes: "3 slides per page", status: "Printing", orderDate: new Date().toISOString(), estimatedPrice: 12.00 },
-  { id: "po4", userId: "student101", fileName: "Old_Order.pdf", copies: 1, paperSize: "A4", color: "Black & White", twoSided: false, status: "Completed", orderDate: new Date(Date.now() - 86400000 * 5).toISOString(), estimatedPrice: 0.10 },
+  { id: "po1", userId: "student123", fileName: "Thesis_Chapter1.pdf", copies: 3, paperSize: "A4", color: "Black & White", twoSided: true, notes: "Staple top-left", status: "Pending", orderDate: new Date(Date.now() - 3600000 * 2).toISOString(), estimatedPrice: 110.00 },
+  { id: "po2", userId: "student456", fileName: "Lab_Report_Final.docx", copies: 1, paperSize: "Letter", color: "Color", twoSided: false, status: "Pending", orderDate: new Date(Date.now() - 3600000).toISOString(), estimatedPrice: 55.00 },
+  { id: "po3", userId: "student789", fileName: "Presentation_Slides.pptx", copies: 10, paperSize: "A4", color: "Color", twoSided: true, notes: "3 slides per page", status: "Printing", orderDate: new Date().toISOString(), estimatedPrice: 900.00 },
+  { id: "po4", userId: "student101", fileName: "Old_Order.pdf", copies: 1, paperSize: "A4", color: "Black & White", twoSided: false, status: "Completed", orderDate: new Date(Date.now() - 86400000 * 5).toISOString(), estimatedPrice: 8.00 },
 ];
 
 const getStatusBadgeVariant = (status: PrintOrder['status']): "default" | "secondary" | "outline" | "destructive" => {
@@ -136,6 +137,7 @@ export default function AdminPrintOrdersPage() {
                     <TableCell className="hidden lg:table-cell text-sm">
                       {order.copies} cop{order.copies > 1 ? 'ies' : 'y'}, {order.paperSize}, {order.color}{order.twoSided ? ", Two-sided" : ""}
                       {order.notes && <p className="text-xs text-muted-foreground truncate max-w-xs">Notes: {order.notes}</p>}
+                      {order.estimatedPrice && <p className="text-xs">Est. Price: ₹{order.estimatedPrice.toFixed(2)}</p>}
                     </TableCell>
                     <TableCell className="text-center">
                       <Badge variant={getStatusBadgeVariant(order.status)} className="gap-1">
@@ -188,3 +190,5 @@ export default function AdminPrintOrdersPage() {
     </div>
   );
 }
+
+    

@@ -1,3 +1,4 @@
+
 export interface Product {
   id: string;
   name: string;
@@ -6,6 +7,7 @@ export interface Product {
   stock: number;
   imageUrl?: string;
   category?: string;
+  dataAiHint?: string; // Added to ensure it's part of the type
 }
 
 export interface PrintSpecification {
@@ -65,3 +67,5 @@ export interface ShopStatus {
   isOpen: boolean;
   message?: string; // e.g. "Closed for holidays"
 }
+
+    

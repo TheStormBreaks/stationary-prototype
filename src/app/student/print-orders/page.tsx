@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -32,19 +33,17 @@ export default function PrintOrdersPage() {
       return;
     }
 
-    price += copies * (paperSize === "A3" ? 0.15 : 0.10); // Base price per copy/paper size
+    // Example pricing in Rupees
+    price += copies * (paperSize === "A3" ? 12 : 8); // Base price per copy/paper size in INR
     if (color === "Color") {
-      price += copies * (paperSize === "A3" ? 0.30 : 0.20); // Additional for color
+      price += copies * (paperSize === "A3" ? 24 : 16); // Additional for color in INR
     }
     if (twoSided) {
-      price += copies * 0.05; // Additional for two-sided
+      price += copies * 4; // Additional for two-sided in INR
     }
     setEstimatedPrice(price);
   };
 
-  // Recalculate price when relevant fields change
-  // useState(() => { calculatePrice(); }); // This line was a bit unusual for price calculation triggering, useEffect is more standard
-  // Using individual useEffects to avoid complex dependency array in a single one.
   useEffect(calculatePrice, [fileName, copies, paperSize, color, twoSided]);
 
 
@@ -64,7 +63,7 @@ export default function PrintOrdersPage() {
     console.log("Print Order Submitted:", printOrder);
     toast({
       title: "Print Order Added to Cart!",
-      description: `${fileName} - ${copies} cop${copies > 1 ? 'ies' : 'y'}. Estimated: $${estimatedPrice?.toFixed(2) ?? 'N/A'}`,
+      description: `${fileName} - ${copies} cop${copies > 1 ? 'ies' : 'y'}. Estimated: ₹${estimatedPrice?.toFixed(2) ?? 'N/A'}`,
       variant: "default",
     });
     // Reset form (optional)
@@ -167,7 +166,7 @@ export default function PrintOrdersPage() {
 
             {estimatedPrice !== null && (
                <div className="p-3 bg-muted rounded-md">
-                 <p className="text-sm font-medium text-foreground">Estimated Price: <span className="text-lg font-semibold text-primary">${estimatedPrice.toFixed(2)}</span></p>
+                 <p className="text-sm font-medium text-foreground">Estimated Price: <span className="text-lg font-semibold text-primary">₹{estimatedPrice.toFixed(2)}</span></p>
                  <p className="text-xs text-muted-foreground">Final price may vary based on final review by shop.</p>
                </div>
             )}
@@ -183,3 +182,5 @@ export default function PrintOrdersPage() {
     </div>
   );
 }
+
+    

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -13,8 +14,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Mock cart data
-const mockProduct: Product = { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 2.50, stock: 50, imageUrl: "https://placehold.co/64x64.png", category: "Notebooks" };
-const mockPrintJob: PrintOrder = { id: "p1", userId: "s1", fileName: "Physics_Assignment.pdf", copies: 2, paperSize: "A4", color: "Color", twoSided: true, status: "Pending", orderDate: new Date().toISOString(), estimatedPrice: 1.20};
+const mockProduct: Product = { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, imageUrl: "https://placehold.co/62x62.png", category: "Notebooks", dataAiHint: "notebook spiral" };
+const mockPrintJob: PrintOrder = { id: "p1", userId: "s1", fileName: "Physics_Assignment.pdf", copies: 2, paperSize: "A4", color: "Color", twoSided: true, status: "Pending", orderDate: new Date().toISOString(), estimatedPrice: 90.00};
 
 const initialCartItems: CartItem[] = [
   { id: "ci1", type: "product", product: mockProduct, quantity: 2 },
@@ -66,7 +67,7 @@ export default function CartPage() {
     console.log("Placing order with items:", cartItems, "Total:", cartTotal);
     toast({
       title: "Order Placed Successfully!",
-      description: `Your order total is $${cartTotal.toFixed(2)}. You will be redirected to order history.`,
+      description: `Your order total is ₹${cartTotal.toFixed(2)}. You will be redirected to order history.`,
       variant: "default",
     });
     setCartItems([]); // Clear cart
@@ -104,7 +105,7 @@ export default function CartPage() {
                     <TableCell className="hidden sm:table-cell">
                       {item.type === "product" ? (
                         <Image
-                          src={item.product.imageUrl || "https://placehold.co/64x64.png"}
+                          src={item.product.imageUrl || "https://placehold.co/55x55.png"}
                           alt={item.product.name}
                           width={64}
                           height={64}
@@ -138,9 +139,9 @@ export default function CartPage() {
                         )}
                     </TableCell>
                     <TableCell className="text-right">
-                      ${(item.type === "product" ? item.product.price : item.printJob.estimatedPrice || 0).toFixed(2)}
+                      ₹{(item.type === "product" ? item.product.price : item.printJob.estimatedPrice || 0).toFixed(2)}
                     </TableCell>
-                    <TableCell className="text-right font-medium">${calculateItemTotal(item).toFixed(2)}</TableCell>
+                    <TableCell className="text-right font-medium">₹{calculateItemTotal(item).toFixed(2)}</TableCell>
                     <TableCell className="text-center">
                       <Button variant="ghost" size="icon" onClick={() => handleRemoveItem(item.id)} aria-label="Remove item">
                         <Trash2 className="h-5 w-5 text-destructive" />
@@ -154,19 +155,19 @@ export default function CartPage() {
                   <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
                   <TableCell colSpan={1} className="sm:hidden"></TableCell>
                   <TableCell className="text-right font-bold text-lg" colSpan={2}>Subtotal</TableCell>
-                  <TableCell className="text-right font-bold text-lg" colSpan={1}>${cartTotal.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-bold text-lg" colSpan={1}>₹{cartTotal.toFixed(2)}</TableCell>
                 </TableRow>
                  <TableRow>
                   <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
                   <TableCell colSpan={1} className="sm:hidden"></TableCell>
                   <TableCell className="text-right text-muted-foreground" colSpan={2}>Est. Tax</TableCell>
-                  <TableCell className="text-right text-muted-foreground" colSpan={1}>${(cartTotal * 0.00).toFixed(2)}</TableCell> {/* Assuming 0% tax for now */}
+                  <TableCell className="text-right text-muted-foreground" colSpan={1}>₹{(cartTotal * 0.00).toFixed(2)}</TableCell> {/* Assuming 0% tax for now */}
                 </TableRow>
                  <TableRow className="border-t-2 border-primary">
                   <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
                   <TableCell colSpan={1} className="sm:hidden"></TableCell>
                   <TableCell className="text-right font-bold text-xl" colSpan={2}>Total</TableCell>
-                  <TableCell className="text-right font-bold text-xl" colSpan={1}>${cartTotal.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-bold text-xl" colSpan={1}>₹{cartTotal.toFixed(2)}</TableCell>
                 </TableRow>
               </TableFooter>
             </Table>
@@ -199,3 +200,5 @@ export default function CartPage() {
     </div>
   );
 }
+
+    

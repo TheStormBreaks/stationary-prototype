@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -53,7 +54,7 @@ export function AdminHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src="https://placehold.co/100x100.png" alt="Admin Avatar" data-ai-hint="admin avatar" />
+                  <AvatarImage src="https://placehold.co/90x90.png" alt="Admin Avatar" data-ai-hint="admin avatar" />
                   <AvatarFallback>
                     <UserCog />
                   </AvatarFallback>
@@ -94,3 +95,5 @@ export function AdminHeader() {
     </header>
   );
 }
+
+    
