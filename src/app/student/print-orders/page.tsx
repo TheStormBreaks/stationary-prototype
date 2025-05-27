@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import type { PrintSpecification } from "@/types";
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { UploadCloud, Printer, PlusCircle, FileText } from "lucide-react";
 
 export default function PrintOrdersPage() {
@@ -43,7 +43,7 @@ export default function PrintOrdersPage() {
   };
 
   // Recalculate price when relevant fields change
-  useState(() => { calculatePrice(); });
+  // useState(() => { calculatePrice(); }); // This line was a bit unusual for price calculation triggering, useEffect is more standard
   // Using individual useEffects to avoid complex dependency array in a single one.
   useEffect(calculatePrice, [fileName, copies, paperSize, color, twoSided]);
 
