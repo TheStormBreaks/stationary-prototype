@@ -12,19 +12,19 @@ import { Building, GraduationCap } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [studentEmail, setStudentEmail] = useState("student@example.com");
-  const [studentPassword, setStudentPassword] = useState("password123");
-  const [adminEmail, setAdminEmail] = useState("admin@example.com");
-  const [adminPassword, setAdminPassword] = useState("secureadmin");
+  const [studentEmail, setStudentEmail] = useState("student");
+  const [studentPassword, setStudentPassword] = useState("student");
+  const [adminEmail, setAdminEmail] = useState("admin");
+  const [adminPassword, setAdminPassword] = useState("admin");
 
   const handleStudentLogin = (e: FormEvent) => {
     e.preventDefault();
     // In a real app, you'd validate credentials here
     console.log("Student Login:", studentEmail, studentPassword);
-    if (studentEmail === "student@example.com" && studentPassword === "password123") {
+    if (studentEmail === "student" && studentPassword === "student") {
       router.push("/student/shop");
     } else {
-      alert("Invalid student credentials. Please use student@example.com and password123 for testing.");
+      alert("Invalid student credentials. Please use 'student' for both email and password for testing.");
     }
   };
 
@@ -32,10 +32,10 @@ export default function LoginPage() {
     e.preventDefault();
     // In a real app, you'd validate credentials here
     console.log("Admin Login:", adminEmail, adminPassword);
-     if (adminEmail === "admin@example.com" && adminPassword === "secureadmin") {
+     if (adminEmail === "admin" && adminPassword === "admin") {
       router.push("/admin/inventory");
     } else {
-      alert("Invalid admin credentials. Please use admin@example.com and secureadmin for testing.");
+      alert("Invalid admin credentials. Please use 'admin' for both email and password for testing.");
     }
   };
 
@@ -62,11 +62,11 @@ export default function LoginPage() {
             <form onSubmit={handleStudentLogin}>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="student-email">Email</Label>
+                  <Label htmlFor="student-email">Username</Label>
                   <Input 
                     id="student-email" 
-                    type="email" 
-                    placeholder="student@example.com" 
+                    type="text" 
+                    placeholder="student" 
                     value={studentEmail}
                     onChange={(e) => setStudentEmail(e.target.value)}
                     required 
@@ -101,11 +101,11 @@ export default function LoginPage() {
             <form onSubmit={handleAdminLogin}>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="admin-email">Email</Label>
+                  <Label htmlFor="admin-email">Username</Label>
                   <Input 
                     id="admin-email" 
-                    type="email" 
-                    placeholder="admin@example.com" 
+                    type="text" 
+                    placeholder="admin" 
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
                     required 
@@ -135,8 +135,8 @@ export default function LoginPage() {
       <div className="mt-8 text-center text-xs text-muted-foreground">
         <p>Campus Hub &copy; {new Date().getFullYear()}</p>
         <div className="mt-2 space-y-1">
-          <p><strong>Test Student:</strong> student@example.com / password123</p>
-          <p><strong>Test Admin:</strong> admin@example.com / secureadmin</p>
+          <p><strong>Test Student:</strong> student / student</p>
+          <p><strong>Test Admin:</strong> admin / admin</p>
         </div>
       </div>
     </div>
