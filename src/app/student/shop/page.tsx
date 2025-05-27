@@ -4,7 +4,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Search, Filter, Package } from "lucide-react";
+import { ShoppingCart, Search, Filter } from "lucide-react";
 import type { Product } from "@/types";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,12 @@ const mockProducts: Product[] = [
   { id: "4", name: "Scientific Calculator", description: "Advanced functions for engineering students", price: 1125.00, stock: 20, category: "Electronics" },
   { id: "5", name: "Sticky Notes (Pack of 100)", description: "3x3 inch, assorted colors", price: 90.00, stock: 200, category: "Stationery" },
   { id: "6", name: "USB Flash Drive 32GB", description: "USB 3.0 for fast data transfer", price: 640.00, stock: 40, category: "Electronics" },
+  { id: "7", name: "Cadbury Dairy Milk", description: "Classic milk chocolate bar - 50g", price: 40.00, stock: 150, category: "Chocolates" },
+  { id: "8", name: "Nestle KitKat", description: "4-finger chocolate wafer bar - 36.5g", price: 30.00, stock: 200, category: "Chocolates" },
+  { id: "9", name: "Lays Classic Salted Chips", description: "Crispy potato chips - 52g pack", price: 20.00, stock: 300, category: "Snacks" },
+  { id: "10", name: "Kurkure Masala Munch", description: "Spicy puffed corn snacks - 90g", price: 20.00, stock: 250, category: "Snacks" },
+  { id: "11", name: "Maaza Mango Drink", description: "Refreshing mango fruit drink - 250ml bottle", price: 25.00, stock: 100, category: "Beverages" },
+  { id: "12", name: "Coca-Cola Classic", description: "Carbonated soft drink - 300ml can", price: 35.00, stock: 120, category: "Beverages" },
 ];
 
 const categories = ["All", ...new Set(mockProducts.map(p => p.category).filter(Boolean) as string[])];

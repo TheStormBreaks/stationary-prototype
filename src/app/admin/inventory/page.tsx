@@ -12,12 +12,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import type { Product } from "@/types";
 import { useState, useEffect, type FormEvent } from "react";
-import { PlusCircle, Trash2, Edit3, PackageSearch, Archive } from "lucide-react";
+import { PlusCircle, Trash2, Edit3, PackageSearch, Archive, Package } from "lucide-react";
 
 const initialMockProducts: Product[] = [
   { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, category: "Notebooks" },
   { id: "2", name: "Ballpoint Pens (Pack of 5)", description: "Blue ink, medium point", price: 130.00, stock: 120, category: "Pens" },
   { id: "3", name: "Highlighters (Set of 4)", description: "Assorted fluorescent colors", price: 225.00, stock: 0, category: "Stationery" },
+  { id: "4", name: "Scientific Calculator", description: "Advanced functions for engineering students", price: 1125.00, stock: 20, category: "Electronics" },
+  { id: "5", name: "Sticky Notes (Pack of 100)", description: "3x3 inch, assorted colors", price: 90.00, stock: 200, category: "Stationery" },
+  { id: "6", name: "USB Flash Drive 32GB", description: "USB 3.0 for fast data transfer", price: 640.00, stock: 40, category: "Electronics" },
+  { id: "7", name: "Cadbury Dairy Milk", description: "Classic milk chocolate bar - 50g", price: 40.00, stock: 150, category: "Chocolates" },
+  { id: "8", name: "Nestle KitKat", description: "4-finger chocolate wafer bar - 36.5g", price: 30.00, stock: 200, category: "Chocolates" },
+  { id: "9", name: "Lays Classic Salted Chips", description: "Crispy potato chips - 52g pack", price: 20.00, stock: 300, category: "Snacks" },
+  { id: "10", name: "Kurkure Masala Munch", description: "Spicy puffed corn snacks - 90g", price: 20.00, stock: 250, category: "Snacks" },
+  { id: "11", name: "Maaza Mango Drink", description: "Refreshing mango fruit drink - 250ml bottle", price: 25.00, stock: 100, category: "Beverages" },
+  { id: "12", name: "Coca-Cola Classic", description: "Carbonated soft drink - 300ml can", price: 35.00, stock: 120, category: "Beverages" },
 ];
 
 export default function InventoryPage() {
@@ -119,6 +128,7 @@ export default function InventoryPage() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-[50px] hidden sm:table-cell text-center">Icon</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead className="hidden md:table-cell">Category</TableHead>
                   <TableHead className="text-right">Price</TableHead>
@@ -129,6 +139,9 @@ export default function InventoryPage() {
               <TableBody>
                 {products.map((product) => (
                   <TableRow key={product.id}>
+                     <TableCell className="hidden sm:table-cell text-center">
+                        <Package className="h-5 w-5 mx-auto text-muted-foreground" />
+                    </TableCell>
                     <TableCell>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-xs text-muted-foreground truncate max-w-xs hidden lg:block">{product.description}</p>
