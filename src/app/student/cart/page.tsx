@@ -90,7 +90,7 @@ export default function CartPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[100px] hidden sm:table-cell">Item</TableHead>
+                  {/* <TableHead className="w-[100px] hidden sm:table-cell">Item</TableHead> */}
                   <TableHead>Details</TableHead>
                   <TableHead className="text-center">Quantity</TableHead>
                   <TableHead className="text-right">Price</TableHead>
@@ -101,7 +101,7 @@ export default function CartPage() {
               <TableBody>
                 {cartItems.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell className="hidden sm:table-cell">
+                    {/* <TableCell className="hidden sm:table-cell">
                       {item.type === "product" ? (
                         <div className="w-16 h-16 bg-muted rounded-md flex items-center justify-center">
                            <Package className="h-8 w-8 text-muted-foreground" />
@@ -111,10 +111,11 @@ export default function CartPage() {
                            <Printer className="h-8 w-8 text-muted-foreground" />
                          </div>
                       )}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <p className="font-medium">
                         {item.type === "product" ? item.product.name : item.printJob.fileName}
+                         {item.type === "print" && <Printer className="h-4 w-4 inline-block ml-2 text-muted-foreground" />}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         {item.type === "product" ? item.product.category : `${item.printJob.copies} cop${item.printJob.copies > 1 ? 'ies' : 'y'}, ${item.printJob.color}`}
@@ -147,22 +148,22 @@ export default function CartPage() {
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
-                  <TableCell colSpan={1} className="sm:hidden"></TableCell>
+                  {/* <TableCell colSpan={2} className="hidden sm:table-cell"></TableCell> */}
+                  {/* <TableCell colSpan={1} className="sm:hidden"></TableCell> */}
                   <TableCell className="text-right font-bold text-lg" colSpan={2}>Subtotal</TableCell>
-                  <TableCell className="text-right font-bold text-lg" colSpan={1}>₹{cartTotal.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-bold text-lg" colSpan={2}>₹{cartTotal.toFixed(2)}</TableCell>
                 </TableRow>
                  <TableRow>
-                  <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
-                  <TableCell colSpan={1} className="sm:hidden"></TableCell>
+                  {/* <TableCell colSpan={2} className="hidden sm:table-cell"></TableCell> */}
+                  {/* <TableCell colSpan={1} className="sm:hidden"></TableCell> */}
                   <TableCell className="text-right text-muted-foreground" colSpan={2}>Est. Tax</TableCell>
-                  <TableCell className="text-right text-muted-foreground" colSpan={1}>₹{(cartTotal * 0.00).toFixed(2)}</TableCell> {/* Assuming 0% tax for now */}
+                  <TableCell className="text-right text-muted-foreground" colSpan={2}>₹{(cartTotal * 0.00).toFixed(2)}</TableCell> {/* Assuming 0% tax for now */}
                 </TableRow>
                  <TableRow className="border-t-2 border-primary">
-                  <TableCell colSpan={3} className="hidden sm:table-cell"></TableCell>
-                  <TableCell colSpan={1} className="sm:hidden"></TableCell>
+                  {/* <TableCell colSpan={2} className="hidden sm:table-cell"></TableCell> */}
+                  {/* <TableCell colSpan={1} className="sm:hidden"></TableCell> */}
                   <TableCell className="text-right font-bold text-xl" colSpan={2}>Total</TableCell>
-                  <TableCell className="text-right font-bold text-xl" colSpan={1}>₹{cartTotal.toFixed(2)}</TableCell>
+                  <TableCell className="text-right font-bold text-xl" colSpan={2}>₹{cartTotal.toFixed(2)}</TableCell>
                 </TableRow>
               </TableFooter>
             </Table>
@@ -195,5 +196,4 @@ export default function CartPage() {
     </div>
   );
 }
-
     

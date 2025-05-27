@@ -81,11 +81,6 @@ export default function ShopPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredProducts.map((product) => (
             <Card key={product.id} className="flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 rounded-lg">
-              <CardHeader className="p-4 border-b bg-muted/30">
-                 <div className="w-full h-32 bg-muted rounded-md flex items-center justify-center">
-                    <Package className="h-16 w-16 text-muted-foreground" />
-                  </div>
-              </CardHeader>
               <CardContent className="flex-grow p-4 space-y-2">
                 <CardTitle className="text-lg">{product.name}</CardTitle>
                 {product.category && <Badge variant="secondary">{product.category}</Badge>}
@@ -121,5 +116,4 @@ export default function ShopPage() {
     </div>
   );
 }
-
     
