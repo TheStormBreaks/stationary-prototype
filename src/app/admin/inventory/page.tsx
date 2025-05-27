@@ -12,13 +12,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import type { Product } from "@/types";
 import { useState, useEffect, type FormEvent } from "react";
-import { PlusCircle, Trash2, Edit3, PackageSearch, Archive, ListFilter } from "lucide-react";
-import Image from "next/image";
+import { PlusCircle, Trash2, Edit3, PackageSearch, Archive } from "lucide-react";
 
 const initialMockProducts: Product[] = [
-  { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, imageUrl: "https://placehold.co/60x60.png", category: "Notebooks", dataAiHint: "notebook spiral" },
-  { id: "2", name: "Ballpoint Pens (Pack of 5)", description: "Blue ink, medium point", price: 130.00, stock: 120, imageUrl: "https://placehold.co/65x65.png", category: "Pens", dataAiHint: "pens pack" },
-  { id: "3", name: "Highlighters (Set of 4)", description: "Assorted fluorescent colors", price: 225.00, stock: 0, imageUrl: "https://placehold.co/70x70.png", category: "Stationery", dataAiHint: "highlighters set" },
+  { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, category: "Notebooks" },
+  { id: "2", name: "Ballpoint Pens (Pack of 5)", description: "Blue ink, medium point", price: 130.00, stock: 120, category: "Pens" },
+  { id: "3", name: "Highlighters (Set of 4)", description: "Assorted fluorescent colors", price: 225.00, stock: 0, category: "Stationery" },
 ];
 
 export default function InventoryPage() {
@@ -33,8 +32,6 @@ export default function InventoryPage() {
   const [productPrice, setProductPrice] = useState("");
   const [productStock, setProductStock] = useState("");
   const [productCategory, setProductCategory] = useState("");
-  const [productImageUrl, setProductImageUrl] = useState("");
-  const [productDataAiHint, setProductDataAiHint] = useState("");
 
 
   useEffect(() => {
@@ -44,8 +41,6 @@ export default function InventoryPage() {
       setProductPrice(editingProduct.price.toString());
       setProductStock(editingProduct.stock.toString());
       setProductCategory(editingProduct.category || "");
-      setProductImageUrl(editingProduct.imageUrl || "");
-      setProductDataAiHint(editingProduct.dataAiHint || "");
     } else {
       // Reset form for new product
       setProductName("");
@@ -53,8 +48,6 @@ export default function InventoryPage() {
       setProductPrice("");
       setProductStock("");
       setProductCategory("");
-      setProductImageUrl("");
-      setProductDataAiHint("");
     }
   }, [editingProduct, isDialogOpen]);
 
@@ -68,8 +61,6 @@ export default function InventoryPage() {
       price: parseFloat(productPrice) || 0,
       stock: parseInt(productStock, 10) || 0,
       category: productCategory,
-      imageUrl: productImageUrl,
-      dataAiHint: productDataAiHint,
     };
 
     if (editingProduct) {
@@ -128,7 +119,6 @@ export default function InventoryPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[80px] hidden sm:table-cell">Image</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead className="hidden md:table-cell">Category</TableHead>
                   <TableHead className="text-right">Price</TableHead>
@@ -139,16 +129,6 @@ export default function InventoryPage() {
               <TableBody>
                 {products.map((product) => (
                   <TableRow key={product.id}>
-                    <TableCell className="hidden sm:table-cell">
-                       <Image
-                          src={product.imageUrl || "https://placehold.co/50x50.png"}
-                          alt={product.name}
-                          width={48}
-                          height={48}
-                          className="rounded-md object-cover"
-                          data-ai-hint={product.dataAiHint || "product image"}
-                        />
-                    </TableCell>
                     <TableCell>
                       <p className="font-medium">{product.name}</p>
                       <p className="text-xs text-muted-foreground truncate max-w-xs hidden lg:block">{product.description}</p>
@@ -216,14 +196,6 @@ export default function InventoryPage() {
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="stock" className="text-right">Stock</Label>
                 <Input id="stock" type="number" value={productStock} onChange={(e) => setProductStock(e.target.value)} className="col-span-3" required />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="imageUrl" className="text-right">Image URL</Label>
-                <Input id="imageUrl" value={productImageUrl} onChange={(e) => setProductImageUrl(e.target.value)} className="col-span-3" placeholder="https://placehold.co/280x180.png" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="dataAiHint" className="text-right">AI Hint</Label>
-                <Input id="dataAiHint" value={productDataAiHint} onChange={(e) => setProductDataAiHint(e.target.value)} className="col-span-3" placeholder="e.g. notebook pen (max 2 words)" />
               </div>
             </div>
             <DialogFooter>

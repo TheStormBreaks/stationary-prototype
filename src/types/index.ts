@@ -5,9 +5,7 @@ export interface Product {
   description: string;
   price: number;
   stock: number;
-  imageUrl?: string;
   category?: string;
-  dataAiHint?: string; // Added to ensure it's part of the type
 }
 
 export interface PrintSpecification {

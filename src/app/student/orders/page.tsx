@@ -17,7 +17,7 @@ const mockOrders: Order[] = [
     orderNumber: "CAMPUS-001",
     userId: "s1",
     items: [
-      { id: "ci1", type: "product", product: { id: "1", name: "Spiral Notebook", price: 190.00, stock:10, description:"test", category: "Notebooks", dataAiHint:"notebook" }, quantity: 2 },
+      { id: "ci1", type: "product", product: { id: "1", name: "Spiral Notebook", price: 190.00, stock:10, description:"test", category: "Notebooks" }, quantity: 2 },
       { id: "ci2", type: "print", printJob: { id:"p1", userId:"s1", fileName: "Essay.pdf", copies: 1, paperSize: "A4", color: "Black & White", twoSided: false, status: "Completed", orderDate: new Date().toISOString(), estimatedPrice: 40.00 }, quantity: 1 },
     ],
     totalAmount: 420.00,
@@ -29,7 +29,7 @@ const mockOrders: Order[] = [
     orderNumber: "CAMPUS-002",
     userId: "s1",
     items: [
-      { id: "ci3", type: "product", product: { id: "2", name: "Pen Pack", price: 130.00, stock:10, description:"test", category: "Pens", dataAiHint:"pens pack" }, quantity: 1 },
+      { id: "ci3", type: "product", product: { id: "2", name: "Pen Pack", price: 130.00, stock:10, description:"test", category: "Pens" }, quantity: 1 },
     ],
     totalAmount: 130.00,
     status: "Processing",

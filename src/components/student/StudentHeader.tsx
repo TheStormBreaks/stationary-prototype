@@ -79,7 +79,7 @@ export function StudentHeader({ shopStatus, cartItemCount }: StudentHeaderProps)
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src="https://placehold.co/95x95.png" alt="Student Avatar" data-ai-hint="user avatar" />
+                   {/* No image for student avatar */}
                   <AvatarFallback>
                     <GraduationCap />
                   </AvatarFallback>

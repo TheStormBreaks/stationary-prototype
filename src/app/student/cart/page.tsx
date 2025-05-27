@@ -5,16 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, TableFooter } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
-import type { CartItem, ProductCartItem, PrintCartItem, Product, PrintOrder } from "@/types";
+import type { CartItem, Product, PrintOrder } from "@/types";
 import { useState } from "react";
 import { ShoppingCart, Trash2, Printer, CreditCard, ChevronLeft, Package } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Mock cart data
-const mockProduct: Product = { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, imageUrl: "https://placehold.co/62x62.png", category: "Notebooks", dataAiHint: "notebook spiral" };
+const mockProduct: Product = { id: "1", name: "Spiral Notebook - A4", description: "100 pages, ruled", price: 190.00, stock: 50, category: "Notebooks" };
 const mockPrintJob: PrintOrder = { id: "p1", userId: "s1", fileName: "Physics_Assignment.pdf", copies: 2, paperSize: "A4", color: "Color", twoSided: true, status: "Pending", orderDate: new Date().toISOString(), estimatedPrice: 90.00};
 
 const initialCartItems: CartItem[] = [
@@ -104,14 +103,9 @@ export default function CartPage() {
                   <TableRow key={item.id}>
                     <TableCell className="hidden sm:table-cell">
                       {item.type === "product" ? (
-                        <Image
-                          src={item.product.imageUrl || "https://placehold.co/55x55.png"}
-                          alt={item.product.name}
-                          width={64}
-                          height={64}
-                          className="rounded-md object-cover"
-                          data-ai-hint={item.product.dataAiHint as string || "product image"}
-                        />
+                        <div className="w-16 h-16 bg-muted rounded-md flex items-center justify-center">
+                           <Package className="h-8 w-8 text-muted-foreground" />
+                         </div>
                       ) : (
                          <div className="w-16 h-16 bg-muted rounded-md flex items-center justify-center">
                            <Printer className="h-8 w-8 text-muted-foreground" />
@@ -125,6 +119,7 @@ export default function CartPage() {
                       <p className="text-sm text-muted-foreground">
                         {item.type === "product" ? item.product.category : `${item.printJob.copies} cop${item.printJob.copies > 1 ? 'ies' : 'y'}, ${item.printJob.color}`}
                       </p>
+                      {item.type === "product" && <Badge variant="outline">Product</Badge>}
                       {item.type === "print" && <Badge variant="outline">Print Job</Badge>}
                     </TableCell>
                     <TableCell className="text-center">

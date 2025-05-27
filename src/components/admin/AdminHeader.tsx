@@ -57,7 +57,7 @@ export function AdminHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src="https://placehold.co/90x90.png" alt="Admin Avatar" data-ai-hint="admin avatar" />
+                  {/* No image for admin avatar */}
                   <AvatarFallback>
                     <UserCog />
                   </AvatarFallback>
