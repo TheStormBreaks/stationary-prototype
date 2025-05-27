@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Logo } from "@/components/shared/Logo";
+import { ThemeToggleButton } from "@/components/shared/ThemeToggleButton";
 import { Building, GraduationCap } from "lucide-react";
 
 export default function LoginPage() {
@@ -19,30 +21,31 @@ export default function LoginPage() {
 
   const handleStudentLogin = (e: FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd validate credentials here
-    console.log("Student Login:", studentEmail, studentPassword);
     if (studentEmail === "student" && studentPassword === "student") {
       router.push("/student/shop");
     } else {
-      alert("Invalid student credentials. Please use 'student' for both email and password for testing.");
+      alert("Invalid student credentials. Please use 'student' for both username and password for testing.");
     }
   };
 
   const handleAdminLogin = (e: FormEvent) => {
     e.preventDefault();
-    // In a real app, you'd validate credentials here
-    console.log("Admin Login:", adminEmail, adminPassword);
      if (adminEmail === "admin" && adminPassword === "admin") {
       router.push("/admin/inventory");
     } else {
-      alert("Invalid admin credentials. Please use 'admin' for both email and password for testing.");
+      alert("Invalid admin credentials. Please use 'admin' for both username and password for testing.");
     }
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
-      <div className="mb-8">
-        <Logo />
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4 relative">
+      <div className="absolute top-4 right-4">
+        <ThemeToggleButton />
+      </div>
+      <div className="mb-8 text-center">
+        <div className="inline-block"> {/* Ensures logo is centered if it has intrinsic width */}
+          <Logo />
+        </div>
       </div>
       <Tabs defaultValue="student" className="w-full max-w-md">
         <TabsList className="grid w-full grid-cols-2">

@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Logo } from "@/components/shared/Logo";
 import { Building, LogOut, UserCog, Printer, Archive, Power } from "lucide-react";
+import { ThemeToggleButton } from "@/components/shared/ThemeToggleButton";
 
 export function AdminHeader() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export function AdminHeader() {
           <Logo />
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4"> {/* Adjusted gap for smaller screens */}
           <nav className="hidden items-center gap-2 md:flex">
             <Button variant="ghost" asChild>
               <Link href="/admin/inventory" className="flex items-center gap-1">
@@ -49,6 +50,8 @@ export function AdminHeader() {
               </Link>
             </Button>
           </nav>
+
+          <ThemeToggleButton />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -71,19 +74,19 @@ export function AdminHeader() {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-               <DropdownMenuItem onClick={() => router.push('/admin/inventory')}>
+               <DropdownMenuItem onClick={() => router.push('/admin/inventory')} className="md:hidden"> {/* Show in dropdown on mobile */}
                 <Archive className="mr-2 h-4 w-4" />
                 <span>Inventory</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push('/admin/print-orders')}>
+              <DropdownMenuItem onClick={() => router.push('/admin/print-orders')} className="md:hidden"> {/* Show in dropdown on mobile */}
                 <Printer className="mr-2 h-4 w-4" />
                 <span>Print Queue</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push('/admin/shop-status')}>
+              <DropdownMenuItem onClick={() => router.push('/admin/shop-status')} className="md:hidden"> {/* Show in dropdown on mobile */}
                 <Power className="mr-2 h-4 w-4" />
                 <span>Shop Status</span>
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator className="md:hidden"/> {/* Show separator on mobile */}
               <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:bg-destructive/10 focus:text-destructive">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
@@ -95,5 +98,3 @@ export function AdminHeader() {
     </header>
   );
 }
-
-    
