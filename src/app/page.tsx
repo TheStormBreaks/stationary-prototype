@@ -12,23 +12,31 @@ import { Building, GraduationCap } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [studentEmail, setStudentEmail] = useState("");
-  const [studentPassword, setStudentPassword] = useState("");
-  const [adminEmail, setAdminEmail] = useState("");
-  const [adminPassword, setAdminPassword] = useState("");
+  const [studentEmail, setStudentEmail] = useState("student@example.com");
+  const [studentPassword, setStudentPassword] = useState("password123");
+  const [adminEmail, setAdminEmail] = useState("admin@example.com");
+  const [adminPassword, setAdminPassword] = useState("secureadmin");
 
   const handleStudentLogin = (e: FormEvent) => {
     e.preventDefault();
     // In a real app, you'd validate credentials here
     console.log("Student Login:", studentEmail, studentPassword);
-    router.push("/student/shop");
+    if (studentEmail === "student@example.com" && studentPassword === "password123") {
+      router.push("/student/shop");
+    } else {
+      alert("Invalid student credentials. Please use student@example.com and password123 for testing.");
+    }
   };
 
   const handleAdminLogin = (e: FormEvent) => {
     e.preventDefault();
     // In a real app, you'd validate credentials here
     console.log("Admin Login:", adminEmail, adminPassword);
-    router.push("/admin/inventory");
+     if (adminEmail === "admin@example.com" && adminPassword === "secureadmin") {
+      router.push("/admin/inventory");
+    } else {
+      alert("Invalid admin credentials. Please use admin@example.com and secureadmin for testing.");
+    }
   };
 
   return (
@@ -124,9 +132,13 @@ export default function LoginPage() {
           </Card>
         </TabsContent>
       </Tabs>
-      <p className="mt-8 text-sm text-muted-foreground">
-        Campus Hub &copy; {new Date().getFullYear()}
-      </p>
+      <div className="mt-8 text-center text-xs text-muted-foreground">
+        <p>Campus Hub &copy; {new Date().getFullYear()}</p>
+        <div className="mt-2 space-y-1">
+          <p><strong>Test Student:</strong> student@example.com / password123</p>
+          <p><strong>Test Admin:</strong> admin@example.com / secureadmin</p>
+        </div>
+      </div>
     </div>
   );
 }
